@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'">
+  <link rel="stylesheet" href="style.css">
+  <title>备忘录</title>
+</head>
+<body>
+  <div class="card">
+    <header class="drag">
+      <span class="title"><span class="dot"></span>备忘录<span class="badge" id="count">0</span></span>
+      <div class="controls">
+        <button id="btn-edit" class="icon-btn" title="添加 / 编辑">＋</button>
+        <button id="btn-bounce" class="icon-btn" title="对角移动">🎈</button>
+        <button id="btn-pin" class="icon-btn" title="置顶">📌</button>
+        <button id="btn-hide" class="icon-btn" title="隐藏到托盘">—</button>
+      </div>
+    </header>
+
+    <div class="list" id="list"></div>
+
+    <div class="editor">
+      <div class="add-row">
+        <input id="new-input" type="text" placeholder="添加备忘录，回车确认…" maxlength="200">
+        <button id="btn-add" class="add-btn">添加</button>
+      </div>
+      <footer>
+        <div class="footer-left">
+          <span id="done-count">0 项未完成</span>
+          <button id="btn-toggle-done" class="link-btn">显示已完成</button>
+        </div>
+        <button id="btn-done" class="done-btn">完成</button>
+      </footer>
+    </div>
+
+    <div class="resize-grip" id="resize-grip" title="拖拽调整大小"></div>
+  </div>
+  <script src="renderer.js"></script>
+</body>
+</html>

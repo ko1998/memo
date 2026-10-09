@@ -1,0 +1,57 @@
+{
+  "name": "memo",
+  "version": "1.0.0",
+  "description": "桌面置顶备忘录：可编辑、点完成、对角移动、本地存储、离线可用",
+  "main": "main.js",
+  "author": "memo",
+  "license": "MIT",
+  "scripts": {
+    "start": "node start.js",
+    "make-icon": "node make-icon.js",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win",
+    "dist:mac": "electron-builder --mac"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.local.memo",
+    "productName": "备忘录",
+    "asar": true,
+    "files": [
+      "main.js",
+      "preload.js",
+      "icon.js",
+      "content/**/*"
+    ],
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "备忘录",
+      "artifactName": "MemoSetup-${version}.exe"
+    },
+    "mac": {
+      "target": ["dmg", "zip"],
+      "category": "public.app-category.productivity",
+      "icon": "build/icon.png",
+      "artifactName": "Memo-${version}-${arch}.${ext}"
+    }
+  }
+}
