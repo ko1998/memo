@@ -1,4 +1,4 @@
-name: 打包 macOS 安装包
+name: 打包 macOS 安装包（Tauri）
 
 on:
   push:
@@ -12,22 +12,25 @@ jobs:
       - name: 检出代码
         uses: actions/checkout@v4
 
-      - name: 安装 Node
-        uses: actions/setup-node@v4
+      - name: 安装 Rust（含 Apple 双架构目标）
+        uses: dtolnay/rust-toolchain@stable
         with:
-          node-version: 20
+          targets: aarch64-apple-darwin, x86_64-apple-darwin
 
-      - name: 安装依赖
-        run: npm install
+      - name: 缓存 Rust 依赖
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+
+      - name: 安装 tauri-cli
+        run: cargo install tauri-cli --locked
 
       - name: 打包（通用版：Intel + 苹果芯片）
-        run: npm run dist:mac -- --universal
+        run: cargo tauri build --target universal-apple-darwin --bundles dmg --ci
 
       - name: 上传安装包
         uses: actions/upload-artifact@v4
         with:
           name: memo-macos
-          path: |
-            dist/*.dmg
-            dist/*.zip
+          path: src-tauri/target/universal-apple-darwin/release/bundle/dmg/*.dmg
           if-no-files-found: error
