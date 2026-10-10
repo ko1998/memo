@@ -35,7 +35,6 @@ body { padding: 10px; }
 
 /* 渐变标题栏 */
 .drag {
-  -webkit-app-region: drag;
   flex: 0 0 auto;
   display: flex;
   align-items: center;
@@ -45,7 +44,6 @@ body { padding: 10px; }
   cursor: grab;
 }
 .drag:active { cursor: grabbing; }
-body.bouncing .drag { -webkit-app-region: no-drag; }
 
 .title {
   font-size: 14px;
@@ -75,7 +73,6 @@ body.bouncing .drag { -webkit-app-region: no-drag; }
 
 .controls { display: flex; gap: 2px; }
 .icon-btn {
-  -webkit-app-region: no-drag;
   width: 25px;
   height: 25px;
   border: none;
@@ -115,7 +112,6 @@ body.bouncing .drag { -webkit-app-region: no-drag; }
 .item + .item { margin-top: 2px; }
 
 .check {
-  -webkit-app-region: no-drag;
   flex: 0 0 auto;
   width: 20px;
   height: 20px;
@@ -145,7 +141,6 @@ body.bouncing .drag { -webkit-app-region: no-drag; }
 .item.done .text { color: var(--text-dim); text-decoration: line-through; }
 
 .del {
-  -webkit-app-region: no-drag;
   flex: 0 0 auto;
   border: none;
   background: #fee2e2;
@@ -266,7 +261,6 @@ footer {
   width: 16px;
   height: 16px;
   cursor: nwse-resize;
-  -webkit-app-region: no-drag;
   z-index: 5;
 }
 .resize-grip::after {

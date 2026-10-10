@@ -157,6 +157,8 @@ async function save() {
 
 function setBounce(v) {
   document.body.classList.toggle('bouncing', v);
+  const drag = $('.drag');
+  if (drag) drag.setAttribute('data-tauri-drag-region', v ? 'false' : 'deep');
   $('#btn-bounce').classList.toggle('active', v);
   $('#btn-bounce').title = v ? '停止移动' : '对角移动';
 }
